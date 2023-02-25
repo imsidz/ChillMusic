@@ -29,6 +29,7 @@ import 'package:blackhole/Helpers/backup_restore.dart';
 import 'package:blackhole/Helpers/downloads_checker.dart';
 import 'package:blackhole/Helpers/extensions.dart';
 import 'package:blackhole/Helpers/supabase.dart';
+import 'package:blackhole/Screens/Chillwhispers/chill_home.dart';
 import 'package:blackhole/Screens/Home/saavn.dart';
 import 'package:blackhole/Screens/Library/library.dart';
 import 'package:blackhole/Screens/LocalMusic/downed_songs.dart';
@@ -260,12 +261,12 @@ class _HomePageState extends State<HomePage> {
           }
         }
       });
-      if (Hive.box('settings').get('proxyIp') == null) {
-        Hive.box('settings').put('proxyIp', '103.47.67.134');
-      }
-      if (Hive.box('settings').get('proxyPort') == null) {
-        Hive.box('settings').put('proxyPort', 8080);
-      }
+      // if (Hive.box('settings').get('proxyIp') == null) {
+      //   Hive.box('settings').put('proxyIp', '103.47.67.134');
+      // }
+      // if (Hive.box('settings').get('proxyPort') == null) {
+      //   Hive.box('settings').put('proxyPort', 8080);
+      // }
       downloadChecker();
       return const SizedBox();
     } else {
@@ -311,7 +312,8 @@ class _HomePageState extends State<HomePage> {
                   flexibleSpace: FlexibleSpaceBar(
                     title: RichText(
                       text: TextSpan(
-                        text: AppLocalizations.of(context)!.appTitle,
+                        text:
+                            'ChillMusic', // AppLocalizations.of(context)!.appTitle,
                         style: const TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.w500,
@@ -462,15 +464,16 @@ class _HomePageState extends State<HomePage> {
                 SliverFillRemaining(
                   hasScrollBody: false,
                   child: Column(
-                    children: <Widget>[
-                      const Spacer(),
+                    children: const <Widget>[
+                      Spacer(),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(5, 30, 5, 20),
+                        padding: EdgeInsets.fromLTRB(5, 30, 5, 20),
                         child: Center(
                           child: Text(
-                            AppLocalizations.of(context)!.madeBy,
+                            'Made by pivan marian',
+                            //AppLocalizations.of(context)!.madeBy,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 12),
+                            style: TextStyle(fontSize: 12),
                           ),
                         ),
                       ),
@@ -556,6 +559,10 @@ class _HomePageState extends State<HomePage> {
                           NavigationRailDestination(
                             icon: const Icon(Icons.my_library_music_rounded),
                             label: Text(AppLocalizations.of(context)!.library),
+                          ),
+                          const NavigationRailDestination(
+                            icon: Icon(Icons.library_music),
+                            label: Text('ChillMusic'),
                           ),
                         ],
                       );
@@ -854,6 +861,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                               ],
                             ),
+                            const ChillHome(),
                             TopCharts(
                               pageController: _pageController,
                             ),
@@ -909,6 +917,12 @@ class _HomePageState extends State<HomePage> {
                           SalomonBottomBarItem(
                             icon: const Icon(Icons.my_library_music_rounded),
                             title: Text(AppLocalizations.of(context)!.library),
+                            selectedColor:
+                                Theme.of(context).colorScheme.secondary,
+                          ),
+                          SalomonBottomBarItem(
+                            icon: const Icon(MdiIcons.music),
+                            title: const Text('ChillWhispers'),
                             selectedColor:
                                 Theme.of(context).colorScheme.secondary,
                           ),

@@ -37,7 +37,7 @@ import 'package:blackhole/CustomWidgets/textinput_dialog.dart';
 import 'package:blackhole/Helpers/config.dart';
 import 'package:blackhole/Helpers/dominant_color.dart';
 import 'package:blackhole/Helpers/lyrics.dart';
-import 'package:blackhole/Helpers/mediaitem_converter.dart';
+import 'package:blackhole/Helpers/mediaitem_converter_chill.dart';
 import 'package:blackhole/Screens/Common/song_list.dart';
 import 'package:blackhole/Screens/Search/albums.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -159,6 +159,7 @@ class _PlayScreenState extends State<PlayScreen> {
   }
 
   Future<MediaItem> setTags(SongModel response, Directory tempDir) async {
+    print(response);
     String playTitle = response.title;
     playTitle == ''
         ? playTitle = response.displayNameWOExt
